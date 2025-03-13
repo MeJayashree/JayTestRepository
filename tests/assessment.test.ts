@@ -48,6 +48,9 @@ test("@smoke Complete Automation", async ({page}) => {
     await checkoutAddress.addAddress();
     await checkoutAddress.enterAddressDetails(address.firstname, address.lastname, address.address, address.city, address.postcode, address.country, address.region);
     await confirmOrder.confirmOrder();
-    })
+    await expect(page.locator(alert_message)).toContainText("Your order has been placed!");
+    await page.getByText("Continue").click();
+    await login.getOrderHistory();
+ })
     
 });

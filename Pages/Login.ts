@@ -9,6 +9,7 @@ export class Login{
     private username: Locator;
     private password: Locator;
     private loginButton: Locator;
+    private orderHistory: Locator;
 
 
 constructor(page: Page){
@@ -19,6 +20,7 @@ constructor(page: Page){
     this.username = page.locator("#input-email");
     this.password = page.locator("#input-password");
     this.loginButton = page.getByRole("button", {name: 'Login'});
+    this.orderHistory = page.getByText('Order History');
 }
 
 async launchURL(url : string){
@@ -37,6 +39,11 @@ async loginCredentials(userName : string, password : string){
 
 async clickLoginButton(){
     await this.loginButton.click();
+}
+
+async getOrderHistory(){
+    await this.myAccount.click();
+    await this.orderHistory.click();
 }
 
 }

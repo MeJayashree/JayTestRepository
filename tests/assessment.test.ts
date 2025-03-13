@@ -32,10 +32,10 @@ test.describe("Ecommerce automation", () => {
         confirmOrder = new ConfirmOrder(page);
     })
 
-// test.afterEach(async ({page}) => {
-//     logout = new Logout(page);
-//     await logout.clickLogout();
-// })
+test.afterEach(async ({page}) => {
+    logout = new Logout(page);
+    await logout.clickLogout();
+})
 
 
 test("@smoke Complete Automation", async ({page}) => {

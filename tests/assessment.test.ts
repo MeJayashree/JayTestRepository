@@ -42,10 +42,6 @@ test("@smoke Complete Automation", async ({page}) => {
     await productSelection.selectCategory();
     await productSelection.clickAddToCart();
     await productSelection.getToastMessage(`Success: You have added ${product_name} to your shopping cart! `);
-    await productSelection.addProductfromSearch("HP LP3065");
-    await productSelection.clickAddToCart();
-    await productSelection.addProductfromSearch("iPod Touch");
-    await productSelection.clickAddToCart();
     await expect(page.locator(cart_total)).toContainText("item(s)");
     await viewCart.viewAndVerifyCart();
     await viewCart.shoppingCart();

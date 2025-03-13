@@ -1,0 +1,9 @@
+{
+    "firstname": "John",
+    "lastname": "Doe",
+    "address": "123 Main St",
+    "city": "New York",
+    "postcode": "123445",
+    "country": "United States",
+    "region": "New York"
+}

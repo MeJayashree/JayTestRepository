@@ -14,6 +14,7 @@ export class Login{
 constructor(page: Page){
     this.page = page;
     this.myAccount = page.getByTitle('My Account');
+    this.login = page.locator(".authorization-link").getByText("Sign In");
     this.login = page.getByText('Login');
     this.username = page.locator("#input-email");
     this.password = page.locator("#input-password");

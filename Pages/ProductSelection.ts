@@ -4,37 +4,32 @@ import { expect } from '@playwright/test';
 
 export class ProductSelection{
 
-
     private page: Page;
     private category: Locator;
-    private product: Locator;
     private addToCart: Locator;
     private toastMessage: Locator;
-    private subCategory: Locator;
-
-    
+    private altText: Locator;
+    private search: Locator;
 
     constructor(page: Page){
         this.page = page;
-        this.category = page.getByTitle("MP3 Players");
-        this.product = page.locator("div.row");
+        this.altText = page.getByAltText("naveenopencart")
+        this.category = page.locator("#content").getByText("MacBook");
         this.addToCart = page.locator("#button-cart");
         this.toastMessage = page.locator(".alert-success");
-        this.subCategory = page.getByText("Show All MP3 Players");
-
+        this.search = page.getByPlaceholder("Search");
     }
 
     async selectCategory(){
+        await this.altText.click();
         await this.category.click();
-        await this.subCategory.click();
-
-
     }
 
-    async selectProduct(productName: string){
-        await this.product.locator(`//a[contains(text(),'${productName}')]`).click();
-
-    }
+    async addProductfromSearch(product:string){
+        await this.search.fill(product);
+        await this.page.keyboard.press("Enter");
+        await this.page.getByRole('button', { name: ' Add to Cart' }).click();
+        }
 
     async clickAddToCart(){
         await this.addToCart.click();
@@ -44,9 +39,4 @@ export class ProductSelection{
         await this.toastMessage.waitFor();
         await expect(this.toastMessage).toContainText(message);
     }
-
-    async viewCart(){
-
-    }
-
 }

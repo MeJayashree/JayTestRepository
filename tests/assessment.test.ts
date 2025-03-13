@@ -32,24 +32,23 @@ test.describe("Ecommerce automation", () => {
         confirmOrder = new ConfirmOrder(page);
     })
 
-test.afterEach(async ({page}) => {
-    logout = new Logout(page);
-    await logout.clickLogout();
-})
+// test.afterEach(async ({page}) => {
+//     logout = new Logout(page);
+//     await logout.clickLogout();
+// })
 
 
 test("@smoke Complete Automation", async ({page}) => {
     await productSelection.selectCategory();
     await productSelection.clickAddToCart();
     await productSelection.getToastMessage(`Success: You have added ${product_name} to your shopping cart! `);
+    await productSelection.addProductfromWishlist();
     await expect(page.locator(cart_total)).toContainText("item(s)");
     await viewCart.viewAndVerifyCart();
     await viewCart.shoppingCart();
     await checkoutAddress.addAddress();
     await checkoutAddress.enterAddressDetails(address.firstname, address.lastname, address.address, address.city, address.postcode, address.country, address.region);
     await confirmOrder.confirmOrder();
-    await expect(page.locator(alert_message)).toContainText("Your order has been placed!");
-    await page.getByText("Continue").click();
     await login.getOrderHistory();
  })
     

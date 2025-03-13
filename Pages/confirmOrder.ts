@@ -8,7 +8,7 @@ export class ConfirmOrder{
     private shippingMethod: Locator;
     private checkox
     private confirmButton: Locator;
-    private continueButton;
+    private paymentButton;
      
     
     constructor(page: Page){
@@ -17,7 +17,7 @@ export class ConfirmOrder{
         this.shippingAddress = page.locator("#button-shipping-address");
         this.shippingMethod = page.locator("#button-shipping-method");
         this.checkox = page.getByRole('checkbox').check();
-        this.continueButton = page.getByRole('button', { name: 'Continue' }).click();
+        this.paymentButton = page.locator("#button-payment-method");
         this.confirmButton = page.locator("#button-confirm");
     }
 
@@ -26,7 +26,7 @@ export class ConfirmOrder{
         await this.shippingAddress.click();
         await this.shippingMethod.click();
         await this.checkox;
-        await this.continueButton;
+        await this.paymentButton.click();
         await this.confirmButton.click();
     }
 }

@@ -25,12 +25,12 @@ export class ProductSelection{
         await this.category.click();
     }
 
-    async addProductfromSearch(product:string){
-        await this.search.fill(product);
-        await this.page.keyboard.press("Enter");
-        await this.page.getByRole('button', { name: ' Add to Cart' }).click();
-        }
+    async addProductfromWishlist(){
+        await this.page.getByTitle('Wish List').click();
+        await this.page.locator('button[onclick="cart.add(\'32\');"]').click();
+        await this.page.locator('button[onclick="cart.add(\'47\');"]').click();
 
+    }
     async clickAddToCart(){
         await this.addToCart.click();
     }
